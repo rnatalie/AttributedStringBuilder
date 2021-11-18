@@ -51,6 +51,7 @@ public class AttributedStringBuilder {
         
         case alignment(NSTextAlignment)
         case lineSpacing(CGFloat)
+        case tabStops([NSTextTab])
         
         var key: NSAttributedString.Key {
             return keyAndValue(for: self).0
@@ -109,6 +110,8 @@ public class AttributedStringBuilder {
                 return (.paragraphStyle, nil)
             case .lineSpacing(_):
                 return (.paragraphStyle, nil)
+            case .tabStops(_):
+                return (.paragraphStyle, nil)
             }
         }
         
@@ -121,6 +124,8 @@ public class AttributedStringBuilder {
                 p.alignment = value
             case .lineSpacing(let value):
                 p.lineSpacing = value
+            case .tabStops(let value):
+                p.tabStops = value
             default:
                 fatalError("Not a paragraph style attribute")
             }
